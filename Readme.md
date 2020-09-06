@@ -1,4 +1,4 @@
-#Пример проекта для теста Github.com  
+** Пример проекта для теста Github.com  
 
 Используемые технологии:  
 Gradle, Java, Allure, Junit5, Selenide, Rest-assured  
@@ -16,6 +16,9 @@ github.login=LOGIN
 github.password=PASSWORD  
 github.token=API_TOKEN  
 
-Примеры запуска:  
+Примеры локального запуска:  
 gradle web -Pthreads=2 -Dbrowser=chrome allure:serve  
-gradle api allure:serve  
+gradle api allure:serve 
+
+К тесту в отчете прикладываются последние скриншоты и логи выполнения.  
+![пример отчета](/src/main/screenshots/report.png) 
