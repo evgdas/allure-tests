@@ -1,4 +1,4 @@
-** Пример проекта для теста Github.com  
+# Пример проекта для теста Github.com  
 
 Используемые технологии:  
 Gradle, Java, Allure, Junit5, Selenide, Rest-assured  
