@@ -11,9 +11,9 @@ public class DriverHelper {
 
     public static void configSelenide() {
         if (isWeb) {
-              Configuration.browser = CustomWebDriver.class.getName();
-              Configuration.timeout = 5000;
-         //     Configuration.holdBrowserOpen=true;
+            Configuration.browser = CustomWebDriver.class.getName();
+            Configuration.timeout = 5000;
+           // Configuration.holdBrowserOpen = true;
         }
     }
 

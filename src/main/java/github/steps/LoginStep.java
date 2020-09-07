@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class LoginStep {
 
     @Step("Логин на github")
-    public void successfulLogin(String loginName, String password) {
+    public static void successfulLogin(String loginName, String password) {
         open("https://github.com/login");
 
         $("#login_field").setValue(loginName);
