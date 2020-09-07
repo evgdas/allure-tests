@@ -21,4 +21,5 @@ gradle web -Pthreads=2 -Dbrowser=chrome allure:serve
 gradle api allure:serve 
 
 К тесту в отчете прикладываются последние скриншоты и логи выполнения.  
-![пример отчета](/src/main/screenshots/report.png) 
+
+![пример отчета](/screenshots/report.png) 
