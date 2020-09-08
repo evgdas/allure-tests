@@ -1,7 +1,7 @@
 # Пример проекта тестов  
 
 Используемые технологии:  
-Gradle, Java, Allure, Junit5, Selenide, Rest-assured  
+Java, Gradle, Allure, Junit5, Selenide, Rest-assured  
 
 Проект параметризирован:  
 1. для запуска многопоточного выполнения указать -Pthreads=2 (2 потока)  
