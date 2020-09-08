@@ -51,7 +51,7 @@ task alfabank(type: Test) {
     useJUnitPlatform {
         includeTags 'alfabank'
     }
-    systemProperty 'platform', 'web'
+
 }
 
 task api(type: Test) {

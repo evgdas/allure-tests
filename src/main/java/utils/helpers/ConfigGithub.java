@@ -2,7 +2,10 @@ package utils.helpers;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:config.properties"})
+@Config.LoadPolicy(Config.LoadType.MERGE)
+@Config.Sources({
+        "system:properties",
+        "classpath:config.properties"})
 public interface ConfigGithub extends Config {
 
     @DefaultValue("")
