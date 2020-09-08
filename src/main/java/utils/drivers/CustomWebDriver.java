@@ -13,8 +13,12 @@ import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.logging.Level;
 
 import static utils.helpers.EnvironmentHelper.*;
@@ -27,14 +31,21 @@ public class CustomWebDriver implements WebDriverProvider {
         capabilities.setBrowserName(browser);
         capabilities.setVersion(version);
         capabilities.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", isVideoOn);
+        capabilities.setCapability("videoFrameRate", 24);
 
-        if ("firefox".equals(browser)) {
-            System.setProperty("webdriver.gecko.driver", "/home/evgeniy/firefox/geckodriver");
-//            WebDriverManager.firefoxdriver().setup();
-            return getLocalFirefoxDriver(getFirefoxOptions().merge(capabilities));
-        } else { //chrome
-          //  WebDriverManager.chromedriver().setup();
-            return getLocalChromeDriver(getChromeOptions().merge(capabilities));
+        if (isRemoteDriver) {
+            return getRemoteWebDriver(capabilities);
+        } else {
+            if ("firefox".equals(browser)) {
+               //System.setProperty("webdriver.gecko.driver", "/home/evgeniy/firefox/geckodriver");
+                WebDriverManager.firefoxdriver().setup();
+                return getLocalFirefoxDriver(getFirefoxOptions().merge(capabilities));
+            } else { //chrome
+                //WebDriverManager.chromedriver().setup();
+                return getLocalChromeDriver(getChromeOptions().merge(capabilities));
+            }
         }
     }
 
@@ -48,9 +59,9 @@ public class CustomWebDriver implements WebDriverProvider {
     }
 
     private FirefoxOptions getFirefoxOptions() {
-        FirefoxProfile profile = new FirefoxProfile(new File("/home/evgeniy/firefox/"));
+     //   FirefoxProfile profile = new FirefoxProfile(new File("/home/evgeniy/firefox/"));
         FirefoxOptions firefoxOptions = new FirefoxOptions()
-                .setProfile(profile)
+             //   .setProfile(profile)
                 .setAcceptInsecureCerts(true);
         if (isHeadless) firefoxOptions.addArguments("headless");
         return firefoxOptions;
@@ -62,5 +73,20 @@ public class CustomWebDriver implements WebDriverProvider {
 
     private WebDriver getLocalFirefoxDriver(FirefoxOptions firefoxOptions) {
         return new FirefoxDriver(firefoxOptions);
+    }
+
+    private WebDriver getRemoteWebDriver(DesiredCapabilities capabilities) {
+        RemoteWebDriver remoteWebDriver = new RemoteWebDriver(getRemoteWebdriverUrl(), capabilities);
+        remoteWebDriver.setFileDetector(new LocalFileDetector());
+        return remoteWebDriver;
+    }
+
+    private URL getRemoteWebdriverUrl() {
+        try {
+            return new URL(remoteDriverUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
