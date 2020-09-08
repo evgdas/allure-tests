@@ -16,4 +16,8 @@ public interface ConfigGithub extends Config {
     @DefaultValue("")
     @Key("github.token")
     String token();
+
+    @DefaultValue("")
+    @Key("github.base_url")
+    String baseUrl();
 }

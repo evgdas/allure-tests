@@ -14,13 +14,13 @@ import utils.helpers.ConfigGithub;
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class BaseApiTest {
-        final RequestSpecification requestSpecification;
-        final ResponseSpecification responseSpecification;
-        final ConfigGithub configGithub = ConfigFactory.newInstance().create(ConfigGithub.class);
+    final RequestSpecification requestSpecification;
+    final ResponseSpecification responseSpecification;
+    final ConfigGithub configGithub = ConfigFactory.newInstance().create(ConfigGithub.class);
 
     public BaseApiTest() {
         requestSpecification = new RequestSpecBuilder()
-                .setBaseUri(Constants.BASE_URL)
+                .setBaseUri(configGithub.baseUrl())
                 .addHeader("Authorization", configGithub.token())
                 .setContentType(ContentType.JSON)
                 .log(LogDetail.ALL)
