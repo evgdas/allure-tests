@@ -2,16 +2,19 @@ package utils.drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.File;
 import java.util.logging.Level;
 
 import static utils.helpers.EnvironmentHelper.*;
@@ -26,7 +29,8 @@ public class CustomWebDriver implements WebDriverProvider {
         capabilities.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
 
         if ("firefox".equals(browser)) {
-            WebDriverManager.firefoxdriver().setup();
+            System.setProperty("webdriver.gecko.driver", "/home/evgeniy/firefox/geckodriver");
+//            WebDriverManager.firefoxdriver().setup();
             return getLocalFirefoxDriver(getFirefoxOptions().merge(capabilities));
         } else { //chrome
           //  WebDriverManager.chromedriver().setup();
@@ -44,9 +48,10 @@ public class CustomWebDriver implements WebDriverProvider {
     }
 
     private FirefoxOptions getFirefoxOptions() {
+        FirefoxProfile profile = new FirefoxProfile(new File("/home/evgeniy/firefox/"));
         FirefoxOptions firefoxOptions = new FirefoxOptions()
-                .addPreference("browser.link.open_newwindow", 3)
-                .addPreference("browser.link.open_newwindow.restriction", 0);
+                .setProfile(profile)
+                .setAcceptInsecureCerts(true);
         if (isHeadless) firefoxOptions.addArguments("headless");
         return firefoxOptions;
     }

@@ -47,6 +47,13 @@ task web(type: Test) {
     }
     systemProperty 'platform', 'web'
 }
+task alfabank(type: Test) {
+    useJUnitPlatform {
+        includeTags 'alfabank'
+    }
+    systemProperty 'platform', 'web'
+}
+
 task api(type: Test) {
     useJUnitPlatform {
         includeTags 'api'
