@@ -41,7 +41,7 @@ public class AttachmentsHelper {
         if (isWeb) {
             return getWebVideoUrl(sessionId);
         } else {
-            return null; // todo isDesktop
+            return null;
         }
     }
 

@@ -1,6 +1,5 @@
 package github.api;
 
-import github.model.Constants;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;

@@ -9,8 +9,8 @@ import org.junit.jupiter.api.TestInstance;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static utils.helpers.AttachmentsHelper.*;
-import static utils.helpers.DriverHelper.configSelenide;
-import static utils.helpers.DriverHelper.getConsoleLogs;
+import static utils.helpers.DriverHelper.*;
+import static utils.helpers.EnvironmentHelper.isVideoOn;
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class BaseTest {
@@ -23,9 +23,12 @@ public class BaseTest {
     }
     @AfterEach
     public void afterEach() {
+        String sessionId = getSessionId();
+
         attachScreenshot("Last screenshot");
         attachPageSource();
         attachAsText("Browser console logs", getConsoleLogs());
         closeWebDriver();
+        if (isVideoOn) attachVideo(sessionId);
     }
 }
