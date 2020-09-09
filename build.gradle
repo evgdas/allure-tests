@@ -50,7 +50,6 @@ task web(type: Test) {
 task alfabank(type: Test) {
     useJUnitPlatform {
         includeTags 'alfabank'
-        systemProperty 'browser', 'firefox'
     }
 
 }
