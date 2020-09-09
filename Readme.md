@@ -9,8 +9,8 @@ Java, Gradle, Allure, Junit5, Selenide, Rest-assured
 3. Версия браузера -Dversion= (пример для chrome)  
 4. Выбор запуска UI тесты или API тесты через задачу в gradle.build  
 5. Запуск браузера без UI (-Dselenide.headless=true)  
-6. Запись видео прохождения тестов
-        - установить через системные свойства параметр remote_driver_url
+6. Запись видео прохождения тестов  
+        - установить через системные свойства параметр remote_driver_url  
         - установить через системные свойства параметр video_storage_url
 
 в папке main/resources должен быть файл config.properties с параметрами для логина на github:  
