@@ -40,7 +40,7 @@ public class CustomWebDriver implements WebDriverProvider {
                 WebDriverManager.firefoxdriver().setup();
                 return getLocalFirefoxDriver(getFirefoxOptions().merge(capabilities));
             } else { //chrome
-                //WebDriverManager.chromedriver().setup();
+                WebDriverManager.chromedriver().setup();
                 return getLocalChromeDriver(getChromeOptions().merge(capabilities));
             }
         }
