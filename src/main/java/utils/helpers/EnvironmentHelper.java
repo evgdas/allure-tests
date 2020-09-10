@@ -11,7 +11,7 @@ public class EnvironmentHelper {
 
 
     public static final boolean
-            isWeb = platform.equals("web"),
+            isWeb = "web".equals(platform),
             isVideoOn = videoStorageUrl != null,
             isDriverFromFile = driverFromFile != null,
             isRemoteDriver = remoteDriverUrl != null;

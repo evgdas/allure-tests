@@ -9,10 +9,14 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import utils.helpers.ConfigDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
+import static utils.drivers.CustomWebDriver.configDriver;
 import static utils.helpers.EnvironmentHelper.isDriverFromFile;
 
 @Owner("evgdas")

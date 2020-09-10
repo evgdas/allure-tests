@@ -49,7 +49,7 @@ public class AttachmentsHelper {
     public static String getWebVideoUrl(String sessionId) {
         if (isDriverFromFile) {
             try {
-                return new URL( configDriver.remoteStorage()+ "/" + sessionId + ".mp4") + "";
+                return new URL(configDriver.remoteStorage() + sessionId + ".mp4") + "";
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
