@@ -1,6 +1,7 @@
 package utils.helpers;
 
 import io.qameta.allure.Attachment;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -9,8 +10,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static utils.helpers.EnvironmentHelper.isWeb;
-import static utils.helpers.EnvironmentHelper.videoStorageUrl;
+import static utils.drivers.CustomWebDriver.configDriver;
+import static utils.helpers.EnvironmentHelper.*;
 
 
 public class AttachmentsHelper {
@@ -46,6 +47,14 @@ public class AttachmentsHelper {
     }
 
     public static String getWebVideoUrl(String sessionId) {
+        if (isDriverFromFile) {
+            try {
+                return new URL( configDriver.remoteStorage()+ "/" + sessionId + ".mp4") + "";
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
         try {
             return new URL(videoStorageUrl + "/" + sessionId + ".mp4") + "";
         } catch (MalformedURLException e) {

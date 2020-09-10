@@ -2,6 +2,7 @@ package utils.drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,6 +14,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import utils.helpers.ConfigDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,6 +23,8 @@ import java.util.logging.Level;
 import static utils.helpers.EnvironmentHelper.*;
 
 public class CustomWebDriver implements WebDriverProvider {
+    public static ConfigDriver configDriver = ConfigFactory.newInstance().create(ConfigDriver.class, System.getProperties());
+
     @Override
     public WebDriver createDriver(DesiredCapabilities capabilities) {
         LoggingPreferences logPrefs = new LoggingPreferences();
@@ -77,11 +81,20 @@ public class CustomWebDriver implements WebDriverProvider {
     }
 
     private URL getRemoteWebdriverUrl() {
-        try {
-            return new URL(remoteDriverUrl);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        if (isDriverFromFile) {
+            try {
+                return new URL(configDriver.remoteURL());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            return null;
+        } else {
+            try {
+                return new URL(remoteDriverUrl);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
-        return null;
     }
 }
