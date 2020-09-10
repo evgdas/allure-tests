@@ -19,7 +19,7 @@ public class AlfaBankTest extends BaseTest {
     final String URL_ALFA_BANK = "https://alfabank.ru/";
 
     @Test
-    @DisplayName("Проверка количества депозитов (зайти с главной странице)")
+    @DisplayName("Проверка наличия архивного депозита (зайти с главной странице)")
     @Story("Проверка депозитов")
     void checkSizeDepozit() {
         step("Открываем главную страницу", () -> {
@@ -28,28 +28,28 @@ public class AlfaBankTest extends BaseTest {
         step("Переход по меню на депозиты", () -> {
             $(byTitle("Вклады")).click();
             $(byTitle("Депозиты")).click();
-            $(byText("Архивные депозиты")).click();
+            $(byText("Архивные счета и депозиты")).click();
+            $(byText("Депозиты")).click();
         });
-        step("Проверяем количество архивных депозитов", () -> {
-            $$((".product-cell__cell-back")).shouldHaveSize(3);
+        step("Проверяем наличие депозита", () -> {
+            $(byText("Победа+")).shouldBe();
         });
     }
 
     @Test
-    @DisplayName("Проверка открытия страницы Страхование вкладов (зайти с главной странице)")
+    @DisplayName("Проверка открытия страницы Накопительные счета (зайти с главной странице)")
     @Story("Проверка открытия страниц")
     public void openPageDepozitInsurance() {
         step("Открываем главную страницу ", () -> {
             open(URL_ALFA_BANK);
         });
-        step("Переход по меню на страницу Страхование вкладов", () -> {
+        step("Переход по меню на страницу Накопительные счета", () -> {
             $(byTitle("Вклады")).click();
-            //В задании найти ссылку используя parent
-            $(byTitle("Страхование вкладов")).parent().lastChild().click();
+            $(byTitle("Депозиты")).click();
+            $(byText("Накопительные счета")).click();
         });
-        step("Проверка открытия страницы Страхование вкладов", () -> {
-            $("h1").shouldHave(text("Страхование вкладов"));
-            $(".col-sm-8").shouldHave(text("АО «АЛЬФА-БАНК» является участником"));
+        step("Проверка наличия счета", () -> {
+            $("#alfa-account").shouldHave(text("Альфа-Счёт"));
         });
     }
 }
