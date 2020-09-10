@@ -3,7 +3,7 @@ package utils.helpers;
 import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
-@Config.Sources({"classpath:${platform}.properties"})
+@Config.Sources({"classpath:${driver}.properties"})
 public interface ConfigDriver extends Config {
 
     @Config.Key("remote_driver_url")
