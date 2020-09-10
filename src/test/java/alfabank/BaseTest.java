@@ -12,6 +12,7 @@ import utils.helpers.ConfigDriver;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static utils.helpers.AttachmentsHelper.*;
 import static utils.helpers.DriverHelper.*;
+import static utils.helpers.EnvironmentHelper.isDriverFromFile;
 import static utils.helpers.EnvironmentHelper.isVideoOn;
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
@@ -32,6 +33,6 @@ public class BaseTest {
         attachPageSource();
         attachAsText("Browser console logs", getConsoleLogs());
         closeWebDriver();
-        if (isVideoOn) attachVideo(sessionId);
+        if (isVideoOn||isDriverFromFile) attachVideo(sessionId);
     }
 }
