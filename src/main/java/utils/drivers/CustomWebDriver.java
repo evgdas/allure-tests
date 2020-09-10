@@ -36,7 +36,7 @@ public class CustomWebDriver implements WebDriverProvider {
         capabilities.setCapability("enableVideo", isVideoOn);
         capabilities.setCapability("videoFrameRate", 24);
 
-        if (isRemoteDriver) {
+        if (isRemoteDriver || "remote".equals(driverFromFile)) {
             return getRemoteWebDriver(capabilities);
         } else {
             if ("firefox".equals(browser)) {

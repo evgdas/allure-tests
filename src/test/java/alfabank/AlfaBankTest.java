@@ -3,14 +3,17 @@ package alfabank;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import utils.helpers.ConfigDriver;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
+import static utils.helpers.EnvironmentHelper.isDriverFromFile;
 
 @Owner("evgdas")
 @Feature("Работа с сайтом Альфабанка")
