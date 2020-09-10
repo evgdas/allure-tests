@@ -7,6 +7,7 @@ import utils.drivers.CustomWebDriver;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
+import static utils.helpers.AttachmentsHelper.attachAsText;
 import static utils.helpers.EnvironmentHelper.isWeb;
 
 public class DriverHelper {
@@ -24,6 +25,7 @@ public class DriverHelper {
     }
 
     public static String getSessionId(){
+        attachAsText("SessionId",((RemoteWebDriver) getWebDriver()).getSessionId().toString().replace("selenoid",""));
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString().replace("selenoid","");
     }
 }
