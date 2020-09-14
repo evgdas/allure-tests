@@ -14,6 +14,8 @@ Java, Gradle, Allure, Junit5, Selenide, Rest-assured
         - установить через системные свойства параметр video_storage_url
 7. для тренировки сделана системная переменная -Ddriver=qaguru or myserver через которую  
    можно загрузить адреса удаленного драйвера через разные файлы
+8. добавлен телеграмм бот для отправки сообщений о прохождении тестов. Добавление в Jenkins
+в post build "java -jar telegramBot.jar "-chatID" "token" "${JOB_BASE_NAME}" "allure-report/" ${BUILD_URL}
 
 в папке main/resources должен быть файл config.properties с параметрами для логина на github:  
 
