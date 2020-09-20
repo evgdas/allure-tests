@@ -22,8 +22,7 @@ import static utils.helpers.EnvironmentHelper.isDriverFromFile;
 @Owner("evgdas")
 @Feature("Работа с сайтом Альфабанка")
 @Tag("alfabank")
-public class AlfaBankTest extends BaseTest {
-    final String URL_ALFA_BANK = "https://alfabank.ru/";
+public class DepozitTest extends BaseTest {
 
     @Test
     @DisplayName("Проверка наличия депозита (зайти с главной странице)")
